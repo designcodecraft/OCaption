@@ -55,7 +55,7 @@ class CaptionerApp:
         device_frame = ttk.LabelFrame(self.root, text="Input Source")
         device_frame.pack(fill=tk.X, padx=10, pady=5)
         ttk.Label(device_frame, text="Windows Live Captions (built-in)").grid(row=0, column=0, sticky=tk.W, padx=10, pady=10)
-        self.open_live_btn = ttk.Button(device_frame, text="Open Live Captions", command=self.start_windows_live_captions)
+        self.open_live_btn = ttk.Button(device_frame, text="Manualy Open Live Captions", command=self.start_windows_live_captions)
         self.open_live_btn.grid(row=0, column=1, sticky=tk.W, padx=5)
 
         # Control buttons frame
@@ -605,18 +605,8 @@ class CaptionerApp:
         """Clear all captions"""
         self.caption_display.delete(1.0, tk.END)
         self.caption_text = ""
-    
-    def copy_to_clipboard(self):
-        """Copy captions to clipboard"""
-        text = self.caption_display.get(1.0, tk.END).strip()
-        if text:
-            self.root.clipboard_clear()
-            self.root.clipboard_append(text)
-            messagebox.showinfo("Success", "Captions copied to clipboard!")
-        else:
-            messagebox.showwarning("Warning", "No captions to copy")
-    
-    def save_to_file(self):
+
+    def clean_text(self, raw_text: str) -> str:
         """Save captions to a text file"""
         text = self.caption_display.get(1.0, tk.END).strip()
         if not text:
@@ -696,33 +686,6 @@ class CaptionerApp:
             cleaned.append(t)
 
         return " ".join(cleaned).strip()
-
-    def save_cleaned_to_file(self):
-        """Save a cleaned version of captions (repeats removed) to file."""
-        text = self.caption_display.get(1.0, tk.END).strip()
-        if not text:
-            messagebox.showwarning("Warning", "No captions to save")
-            return
-
-        cleaned = self.clean_text(text)
-        if not cleaned:
-            messagebox.showwarning("Warning", "After cleanup, no content remains")
-            return
-
-        file_path = filedialog.asksaveasfilename(
-            defaultextension=".txt",
-            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
-            initialdir=os.path.expanduser("~\\Documents"),
-            initialfile=f"captions_cleaned_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-        )
-
-        if file_path:
-            try:
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(cleaned)
-                messagebox.showinfo("Success", f"Cleaned captions saved to:\n{file_path}")
-            except Exception as e:
-                messagebox.showerror("Error", f"Failed to save file:\n{str(e)}")
 
 def main():
     root = tk.Tk()
