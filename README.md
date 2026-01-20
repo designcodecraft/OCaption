@@ -1,7 +1,5 @@
 # OCaption
 
-### 🚀 [Download Latest Release (Windows EXE)](https://github.com/designcodecraft/OCaption/releases)
-
 > [!IMPORTANT]
 > **Work In Progress (WIP)**: This project is currently under active development. You may encounter bugs, performance issues, or UI inconsistencies.
 >
@@ -63,7 +61,9 @@ The application title, version, and icon are managed via `app_meta.json`. Update
 
 ### Core Runtime
 - **pywinauto** (BSD 3-Clause) — UI Automation for reading Windows Live Captions
-- **Pillow** (HPND License) — Image handling for icon creation
+
+### Development / Optional
+- **Pillow** (HPND License) — Only needed if regenerating the app icon via `create_icon.py`
 
 ### Build Tools
 - **PyInstaller** (GPL 2.0) — Used only for building the EXE; not shipped in the runtime executable.
