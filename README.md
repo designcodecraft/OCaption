@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# OCaption
-=======
 # OCaption
 
 ### 🚀 [Download Latest Release (Windows EXE)](https://github.com/designcodecraft/OCaption/releases)
