@@ -6,3 +6,14 @@ dist/
 *.wav
 test.txt
 transcript/
+
+.generated_files/
+nbproject/
+Makefile*
+Package-*
+private/
+_build/
+!cmake/**/user.cmake
+cmake/**/.generated/*
+cmake/**/CMake*
+out/
