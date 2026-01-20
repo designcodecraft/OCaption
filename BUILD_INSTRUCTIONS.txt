@@ -1,0 +1,25 @@
+Build instructions for captioner.exe
+
+Prerequisites:
+- Windows machine
+- Python 3.10+ in the project's virtualenv at .venv (you already have .venv)
+- The project root is D:\codebase\cap
+
+Steps (recommended):
+1. Open Command Prompt (not PowerShell).
+2. cd D:\codebase\cap
+3. Run:
+   build_exe.bat
+
+Notes and caveats:
+- PyInstaller will bundle the Python app and many dependencies into a single executable, but large models (Whisper) are not embedded by default. The first run of the app may need to download or load the model from disk; ensure your environment has enough disk space.
+- If your app depends on large native libs (torch, whisper), PyInstaller builds may be large and require additional hidden-imports or hooks; inspect the PyInstaller output if packaging fails and add missing modules to the build_exe.bat --hidden-import list.
+- If you prefer to see console output during debugging, remove the `--noconsole` flag in `build_exe.bat`.
+
+Troubleshooting:
+- If PyInstaller fails with missing modules, re-run the command adding `--hidden-import <module>` for each missing module reported.
+- If the executable crashes at runtime, run the non-`--noconsole` build to see tracebacks.
+
+If you want, I can:
+- Create a PyInstaller spec file with more explicit hooks.
+- Try to run a build in this workspace (I cannot execute the build in your environment without your permission to run PyInstaller here).
