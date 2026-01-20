@@ -23,7 +23,8 @@ for /f "delims=" %%A in ('powershell -NoProfile -Command ^
 
 set EXE_NAME=%APP_NAME%_v%APP_VER%
 
-:: Build single-file, GUI (no console) executable
+:: Build single-file, GUI (no console) executable with minimal dependencies
+:: Exclude bloat: torch, numpy, scipy, whisper, sounddevice, torchaudio, etc.
 :: Using ^ for line continuation in batch
 pyinstaller --noconsole --onefile --name "%EXE_NAME%" ^
   --icon "%APP_ICON%" ^
@@ -31,9 +32,14 @@ pyinstaller --noconsole --onefile --name "%EXE_NAME%" ^
   --add-data "assets\icon.ico;assets" ^
   --add-data "live_caption_reader.py;." ^
   --hidden-import=pywinauto ^
-  --hidden-import=scipy ^
-  --hidden-import=sounddevice ^
-  --hidden-import=scipy.signal ^
+  --exclude-module=torch ^
+  --exclude-module=numpy ^
+  --exclude-module=scipy ^
+  --exclude-module=sounddevice ^
+  --exclude-module=openai ^
+  --exclude-module=whisper ^
+  --exclude-module=torchaudio ^
+  --exclude-module=torchvision ^
   captioner.py
 
 if exist dist\%EXE_NAME%.exe (

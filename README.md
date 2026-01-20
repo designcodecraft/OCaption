@@ -59,6 +59,17 @@ The result will be available in the `dist/` folder.
 
 The application title, version, and icon are managed via `app_meta.json`. Update this file to change the build information.
 
+## Licenses & Dependencies
+
+### Core Runtime
+- **pywinauto** (BSD 3-Clause) — UI Automation for reading Windows Live Captions
+- **Pillow** (HPND License) — Image handling for icon creation
+
+### Build Tools
+- **PyInstaller** (GPL 2.0) — Used only for building the EXE; not shipped in the runtime executable.
+
+**License Compliance**: OCaption source code and distributions contain no GPL-licensed runtime dependencies. PyInstaller is a build-time-only tool.
+
 ---
 *Created by [designcodecraft](https://github.com/designcodecraft)*
 >>>>>>> f1ffff1 (Initial commit of OCaption project)
