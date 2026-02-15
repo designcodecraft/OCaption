@@ -31,7 +31,7 @@ class CaptionerApp:
         except Exception:
             self._transcript_dir = self._base_dir
         meta = load_meta()
-        self.root.title(meta["title"])  # e.g., OCaption v1.0
+        self.root.title(meta["title"])  # e.g., OCaption v1.5
         self.root.geometry("700x600")
         self.root.resizable(False, False)
         # Use bundled icon for the window title bar
@@ -605,28 +605,6 @@ class CaptionerApp:
         """Clear all captions"""
         self.caption_display.delete(1.0, tk.END)
         self.caption_text = ""
-
-    def clean_text(self, raw_text: str) -> str:
-        """Save captions to a text file"""
-        text = self.caption_display.get(1.0, tk.END).strip()
-        if not text:
-            messagebox.showwarning("Warning", "No captions to save")
-            return
-        
-        file_path = filedialog.asksaveasfilename(
-            defaultextension=".txt",
-            filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
-            initialdir=os.path.expanduser("~\\Documents"),
-            initialfile=f"captions_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-        )
-        
-        if file_path:
-            try:
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    f.write(text)
-                messagebox.showinfo("Success", f"Captions saved to:\n{file_path}")
-            except Exception as e:
-                messagebox.showerror("Error", f"Failed to save file:\n{str(e)}")
 
     def clean_text(self, raw_text: str) -> str:
         """Remove repeated words and near-duplicate sentences from text.

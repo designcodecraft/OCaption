@@ -1,6 +1,6 @@
 {
   "name": "OCaption",
-  "version": "1.3",
+  "version": "1.5",
   "window_title_template": "{name} v{version}",
   "icon": "assets/icon.ico"
 }
