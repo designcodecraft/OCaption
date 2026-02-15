@@ -1,5 +1,7 @@
 # OCaption
 
+[![Download OCaption](https://img.shields.io/badge/Download-OCaption%20v1.5-blue?style=for-the-badge&logo=windows)](https://github.com/designcodecraft/OCaption/releases/latest)
+
 > [!IMPORTANT]
 > **Work In Progress (WIP)**: This project is currently under active development. You may encounter bugs, performance issues, or UI inconsistencies.
 >
